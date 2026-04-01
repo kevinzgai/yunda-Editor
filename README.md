@@ -40,25 +40,36 @@ pnpm build
 yunda-editor/
 ├── src/
 │   ├── components/
-│   │   └── DesignFormWork/       # 核心编辑器组件
-│   │       ├── index.vue        # 编辑器主入口
-│   │       ├── DesignLeft/      # 左侧面板（组件列表、图层）
-│   │       ├── DesignCenter/    # 中间画布（手机预览）
-│   │       └── DesignRight/     # 右侧面板（属性配置）
+│   │   ├── DesignFormWork/       # 核心编辑器组件
+│   │   │   ├── index.vue        # 编辑器主入口
+│   │   │   ├── DesignLeft/      # 左侧面板（组件列表、图层）
+│   │   │   ├── DesignCenter/    # 中间画布（手机预览）
+│   │   │   └── DesignRight/     # 右侧面板（属性配置）
+│   │   ├── ExportModal/         # 导出弹窗
+│   │   └── Modal/               # 通用弹窗
 │   │
 │   ├── store/
 │   │   └── editor.js            # 核心状态管理（Pinia）
 │   │
-│   ├── widgets/                 # 预设组件库
-│   │   ├── TextWidget.vue       # 文本组件
-│   │   ├── ImageWidget.vue      # 图片组件
-│   │   ├── ButtonWidget.vue      # 按钮组件
-│   │   ├── TitleWidget.vue       # 标题组件
-│   │   ├── SwiperWidget.vue      # 幻灯片组件
-│   │   └── SwiperWidget.meta.js  # 组件元信息配置
-│   │
-│   ├── setters/                 # 属性配置器
-│   │   └── ImageListSetter.vue  # 图片列表配置器
+│   ├── widgets/                 # 预设组件库（每个组件一个目录）
+│   │   ├── TextWidget/          # 文本组件
+│   │   ├── ImageWidget/         # 图片组件
+│   │   ├── ButtonWidget/        # 按钮组件
+│   │   ├── TitleWidget/         # 标题组件
+│   │   ├── SwiperWidget/        # 幻灯片组件
+│   │   ├── LargeSwiperWidget/   # 大图幻灯片
+│   │   ├── GridNavWidget/       # 网格导航
+│   │   ├── ProductListWidget/   # 商品列表
+│   │   ├── MovieRecommendWidget/ # 影片推荐
+│   │   ├── MovieCardWidget/     # 影片卡片
+│   │   ├── ExhibitionWidget/     # 展览推荐
+│   │   ├── AgentWidget/         # 智能体
+│   │   ├── AgentGroupWidget/     # 智能体组
+│   │   ├── LightCardWidget/     # 光影卡
+│   │   ├── LightCardListWidget/ # 光影卡列表
+│   │   ├── NavbarWidget/        # 导航栏
+│   │   ├── NoticeBar/           # 公告栏
+│   │   └── HotspotWidget/       # 图片热区
 │   │
 │   ├── registry.js              # 组件注册表（核心）
 │   │
@@ -458,11 +469,37 @@ store.init(data)                  // 初始化数据
 
 ## 组件分类
 
-| 分类 | 说明 | 组件示例 |
-|------|------|----------|
+| 分类 | 说明 | 组件 |
+|------|------|------|
 | base | 基础组件 | 文本、图片、按钮、标题 |
-| media | 媒体组件 | 幻灯片、视频 |
-| business | 业务组件 | 商品列表、优惠券 |
+| media | 媒体组件 | 幻灯片、大图幻灯片、图片热区 |
+| business | 业务组件 | 网格导航、商品列表、影片推荐、展览推荐、光影卡、导航栏、公告栏 |
+
+### 组件介绍
+
+**基础组件**
+- **TextWidget** - 文本组件，支持富文本
+- **ImageWidget** - 图片组件
+- **ButtonWidget** - 按钮组件
+- **TitleWidget** - 标题组件
+
+**媒体组件**
+- **SwiperWidget** - 幻灯片组件，支持轮播
+- **LargeSwiperWidget** - 大图幻灯片组件
+- **HotspotWidget** - 图片热区组件，可在图片上添加可点击热区
+
+**业务组件**
+- **GridNavWidget** - 网格导航组件
+- **ProductListWidget** - 商品列表组件
+- **MovieRecommendWidget** - 影片推荐组件（2/3竖图）
+- **MovieCardWidget** - 影片卡片组件
+- **ExhibitionWidget** - 展览推荐组件（3/2宽图）
+- **AgentWidget** - 智能体组件
+- **AgentGroupWidget** - 智能体组组件
+- **LightCardWidget** - 光影卡组件（1.5比例，可横向滚动）
+- **LightCardListWidget** - 光影卡列表组件
+- **NavbarWidget** - 导航栏组件
+- **NoticeBar** - 公告栏组件
 
 ## 常见问题
 
