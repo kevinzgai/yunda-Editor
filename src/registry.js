@@ -14,6 +14,13 @@ import AgentWidget from "./widgets/AgentWidget/index.vue";
 import ProductListWidget from "./widgets/ProductListWidget/index.vue";
 import AgentGroupWidget from "./widgets/AgentGroupWidget/index.vue";
 import MovieRecommendWidget from "./widgets/MovieRecommendWidget/index.vue";
+import NavbarWidget from "./widgets/NavbarWidget/index.vue";
+import MovieCardWidget from "./widgets/MovieCardWidget/index.vue";
+import NoticeBar from "./widgets/NoticeBar/index.vue";
+import HotspotWidget from "./widgets/HotspotWidget/index.vue";
+import LightCardWidget from "./widgets/LightCardWidget/index.vue";
+import LightCardListWidget from "./widgets/LightCardListWidget/index.vue";
+import ExhibitionWidget from "./widgets/ExhibitionWidget/index.vue";
 
 import TextWidgetMeta from "./widgets/TextWidget/meta";
 import ImageWidgetMeta from "./widgets/ImageWidget/meta";
@@ -24,6 +31,13 @@ import AgentWidgetMeta from "./widgets/AgentWidget/meta";
 import ProductListWidgetMeta from "./widgets/ProductListWidget/meta";
 import AgentGroupWidgetMeta from "./widgets/AgentGroupWidget/meta";
 import MovieRecommendWidgetMeta from "./widgets/MovieRecommendWidget/meta";
+import NavbarWidgetMeta from "./widgets/NavbarWidget/meta";
+import MovieCardWidgetMeta from "./widgets/MovieCardWidget/meta";
+import NoticeBarMeta from "./widgets/NoticeBar/meta";
+import HotspotWidgetMeta from "./widgets/HotspotWidget/meta";
+import LightCardWidgetMeta from "./widgets/LightCardWidget/meta";
+import LightCardListWidgetMeta from "./widgets/LightCardListWidget/meta";
+import ExhibitionWidgetMeta from "./widgets/ExhibitionWidget/meta";
 
 // ============ 组件映射（用于渲染） ============
 export const widgetComponents = {
@@ -38,6 +52,13 @@ export const widgetComponents = {
   ProductListWidget,
   AgentGroupWidget,
   MovieRecommendWidget,
+  NavbarWidget,
+  MovieCardWidget,
+  NoticeBar,
+  HotspotWidget,
+  LightCardWidget,
+  LightCardListWidget,
+  ExhibitionWidget,
 };
 
 // ============ 组件元信息（用于编辑器面板） ============
@@ -95,6 +116,13 @@ const widgetMetaMap = {
   ProductListWidget: ProductListWidgetMeta,
   AgentGroupWidget: AgentGroupWidgetMeta,
   MovieRecommendWidget: MovieRecommendWidgetMeta,
+  NavbarWidget: NavbarWidgetMeta,
+  MovieCardWidget: MovieCardWidgetMeta,
+  NoticeBar: NoticeBarMeta,
+  HotspotWidget: HotspotWidgetMeta,
+  LightCardWidget: LightCardWidgetMeta,
+  LightCardListWidget: LightCardListWidgetMeta,
+  ExhibitionWidget: ExhibitionWidgetMeta,
 };
 
 export const widgetMetas = Object.values(widgetMetaMap).map((meta) => ({

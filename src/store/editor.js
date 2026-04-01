@@ -9,6 +9,11 @@ export const useEditorStore = defineStore("editor", () => {
   const widgetList = ref([]);
   const selectedWidget = ref(null);
   const isDragging = ref(false);
+  const pageConfig = ref({
+    backgroundColor: "#f5f5f5",
+    backgroundImage: "",
+    padding: "0",
+  });
 
   // ==================== Getters ====================
   const hasSelected = computed(() => selectedWidget.value !== null);
@@ -100,12 +105,18 @@ export const useEditorStore = defineStore("editor", () => {
     };
   }
 
+  // 更新页面配置
+  function updatePageConfig(config) {
+    pageConfig.value = { ...pageConfig.value, ...config };
+  }
+
   return {
     widgetList,
     selectedWidget,
     isDragging,
     hasSelected,
     widgetCount,
+    pageConfig,
     addWidget,
     removeWidget,
     selectWidget,
@@ -116,6 +127,7 @@ export const useEditorStore = defineStore("editor", () => {
     clearCanvas,
     init,
     exportData,
+    updatePageConfig,
   };
 });
 

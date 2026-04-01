@@ -1,6 +1,6 @@
 <template>
   <div class="w-70 flex flex-col h-full bg-white border-l border-gray-200">
-    <div class="px-4 py-4 border-b border-gray-200">
+    <div class="px-4 py-4 pr-5 border-b border-gray-200">
       <div class="flex items-center gap-2.5">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
@@ -9,19 +9,58 @@
       </div>
     </div>
 
-    <div v-if="!selectedWidget" class="flex-1 flex items-center justify-center">
-      <div class="text-center">
-        <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-gray-100 flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-          </svg>
+    <div v-if="!selectedWidget" class="flex-1 overflow-auto p-3 pr-5">
+      <div class="mb-4">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-2xl font-bold text-primary">📄</span>
+          <span class="text-sm font-medium text-gray-800">页面设置</span>
         </div>
-        <p class="text-xs text-gray-400">点击组件进行配置</p>
+      </div>
+
+      <div class="mb-4">
+        <div class="text-xs font-medium text-gray-500 mb-2 flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+          </svg>
+          背景设置
+        </div>
+        <div class="space-y-3">
+          <div class="prop-item">
+            <label class="block text-xs text-gray-600 mb-1">背景颜色</label>
+            <el-color-picker
+              :model-value="pageConfig.backgroundColor"
+              @update:model-value="(value) => editorStore.updatePageConfig({ backgroundColor: value })"
+              show-alpha
+            />
+          </div>
+          <div class="prop-item">
+            <label class="block text-xs text-gray-600 mb-1">背景图片</label>
+            <el-input
+              :model-value="pageConfig.backgroundImage"
+              placeholder="输入图片URL，留空则无背景图"
+              @update:model-value="(value) => editorStore.updatePageConfig({ backgroundImage: value })"
+              size="small"
+            />
+          </div>
+          <div class="prop-item">
+            <label class="block text-xs text-gray-600 mb-1">页面内边距</label>
+            <el-input
+              :model-value="pageConfig.padding"
+              placeholder="如: 0 8px"
+              @update:model-value="(value) => editorStore.updatePageConfig({ padding: value })"
+              size="small"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 p-3 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-400">💡 提示：点击画布中的组件可单独配置该组件的属性</p>
       </div>
     </div>
 
     <div v-else class="flex-1 overflow-auto">
-      <div class="p-3">
+      <div class="p-3 pr-5">
         <div class="mb-4">
           <div class="flex items-center gap-2 mb-2">
             <span class="text-2xl font-bold text-primary">{{ widgetMeta?.icon }}</span>
@@ -66,6 +105,30 @@
               <MovieTagListSetter
                 v-else-if="config.type === 'movie-tag-list'"
                 :model-value="selectedWidget.props[config.name] || []"
+                @update:model-value="(value) => handlePropValueChange(config.name, value)"
+              />
+              <MovieListSetter
+                v-else-if="config.type === 'movie-list'"
+                :model-value="selectedWidget.props[config.name] || []"
+                v-bind="config.options || {}"
+                @update:model-value="(value) => handlePropValueChange(config.name, value)"
+              />
+              <HotspotListSetter
+                v-else-if="config.type === 'hotspot-list'"
+                :model-value="selectedWidget.props[config.name] || []"
+                v-bind="config.options || {}"
+                @update:model-value="(value) => handlePropValueChange(config.name, value)"
+              />
+              <LightCardListSetter
+                v-else-if="config.type === 'light-card-list' && selectedWidget.name === 'LightCardWidget'"
+                :model-value="selectedWidget.props[config.name] || []"
+                v-bind="config.options || {}"
+                @update:model-value="(value) => handlePropValueChange(config.name, value)"
+              />
+              <LightCardListSetter2
+                v-else-if="config.type === 'light-card-list' && selectedWidget.name === 'LightCardListWidget'"
+                :model-value="selectedWidget.props[config.name] || []"
+                v-bind="config.options || {}"
                 @update:model-value="(value) => handlePropValueChange(config.name, value)"
               />
               <el-input-number
@@ -153,6 +216,10 @@ import GridNavListSetter from "../../../widgets/GridNavWidget/GridNavListSetter.
 import ProductListSetter from "../../../widgets/ProductListWidget/ProductListSetter.vue";
 import AgentGroupSetter from "../../../widgets/AgentGroupWidget/AgentGroupSetter.vue";
 import MovieTagListSetter from "../../../widgets/MovieRecommendWidget/MovieTagListSetter.vue";
+import MovieListSetter from "../../../widgets/MovieCardWidget/MovieListSetter.vue";
+import HotspotListSetter from "../../../widgets/HotspotWidget/HotspotListSetter.vue";
+import LightCardListSetter from "../../../widgets/LightCardWidget/LightCardListSetter.vue";
+import LightCardListSetter2 from "../../../widgets/LightCardListWidget/LightCardListSetter.vue";
 import {
   ElInput,
   ElInputNumber,
@@ -165,6 +232,7 @@ import {
 const editorStore = useEditorStore();
 
 const selectedWidget = computed(() => editorStore.selectedWidget);
+const pageConfig = computed(() => editorStore.pageConfig);
 
 const widgetMeta = computed(() => {
   if (!selectedWidget.value) return null;

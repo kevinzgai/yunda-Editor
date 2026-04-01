@@ -1,6 +1,6 @@
 <template>
   <div class="w-60 bg-white border-r border-gray-200 flex flex-col h-full">
-    <div class="px-4 py-4 border-b border-gray-200">
+    <div class="px-4 py-4 pl-5 border-b border-gray-200">
       <div class="flex items-center gap-2.5">
         <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-purple-400 flex items-center justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -26,7 +26,7 @@
             </span>
           </div>
 
-          <div class="widget-list p-3 grid grid-cols-2 gap-2 overflow-auto" style="max-height: calc(100vh - 180px);">
+          <div class="widget-list p-3 pl-5 grid grid-cols-2 gap-2 overflow-auto" style="max-height: calc(100vh - 180px);">
             <div
               v-for="widget in filteredWidgets"
               :key="widget.name"

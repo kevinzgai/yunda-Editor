@@ -3,7 +3,7 @@
     <div v-if="showTitle && title" class="text-sm font-semibold text-gray-800 mb-3 px-1">
       {{ title }}
     </div>
-    
+
     <!-- Tab 切换 -->
     <div v-if="showTabs && visibleTags.length > 0" class="flex gap-2 mb-3">
       <button
@@ -17,28 +17,23 @@
       </button>
     </div>
 
-    <!-- 影片列表单行横向滚动 -->
+    <!-- 展览列表单行横向滚动 -->
     <div class="overflow-x-auto">
       <div class="flex gap-3 pb-2">
         <div
           v-for="i in 4"
           :key="i"
-          class="flex-shrink-0 bg-white rounded-lg overflow-hidden shadow-sm relative"
+          class="flex-shrink-0 bg-white rounded-lg overflow-hidden shadow-sm"
           :style="cardStyle"
         >
           <img
-            :src="`https://picsum.photos/seed/movie${i}/100/150`"
-            alt="电影海报"
-            class="w-full aspect-[2/3] object-cover"
+            :src="`https://picsum.photos/seed/exhibition${i}/150/100`"
+            alt="展览图片"
+            class="w-full aspect-[3/2] object-cover"
           />
-          <!-- 评分标签 -->
-          <div class="absolute top-1 right-1 bg-black/60 text-white text-xs px-1.5 py-0.5 rounded flex items-center gap-0.5">
-            <span class="text-yellow-400">★</span>
-            <span>{{ (8 + i * 0.5).toFixed(1) }}</span>
-          </div>
           <div class="p-2">
-            <div class="text-sm font-medium text-gray-800 mb-1 truncate">影片名称</div>
-            <div class="text-xs text-gray-500 line-clamp-2">影片描述信息</div>
+            <div class="text-sm font-medium text-gray-800 mb-1 truncate">展览名称</div>
+            <div class="text-xs text-gray-500 line-clamp-2">展览描述信息</div>
           </div>
         </div>
       </div>
@@ -50,7 +45,7 @@
 import { computed, ref, watch } from "vue";
 
 const props = defineProps({
-  title: { type: String, default: "影片推荐" },
+  title: { type: String, default: "展览推荐" },
   showTitle: { type: Boolean, default: true },
   showTabs: { type: Boolean, default: true },
   activeTag: { type: String, default: "hot" },
@@ -58,7 +53,7 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-  cardWidth: { type: String, default: "100px" },
+  cardWidth: { type: String, default: "120px" },
   styles: { type: Object, default: () => ({}) },
 });
 
