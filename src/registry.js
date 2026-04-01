@@ -13,6 +13,7 @@ import LargeSwiperWidget from "./widgets/LargeSwiperWidget/index.vue";
 import AgentWidget from "./widgets/AgentWidget/index.vue";
 import ProductListWidget from "./widgets/ProductListWidget/index.vue";
 import AgentGroupWidget from "./widgets/AgentGroupWidget/index.vue";
+import MovieRecommendWidget from "./widgets/MovieRecommendWidget/index.vue";
 
 import TextWidgetMeta from "./widgets/TextWidget/meta";
 import ImageWidgetMeta from "./widgets/ImageWidget/meta";
@@ -22,6 +23,7 @@ import LargeSwiperWidgetMeta from "./widgets/LargeSwiperWidget/meta";
 import AgentWidgetMeta from "./widgets/AgentWidget/meta";
 import ProductListWidgetMeta from "./widgets/ProductListWidget/meta";
 import AgentGroupWidgetMeta from "./widgets/AgentGroupWidget/meta";
+import MovieRecommendWidgetMeta from "./widgets/MovieRecommendWidget/meta";
 
 // ============ 组件映射（用于渲染） ============
 export const widgetComponents = {
@@ -35,6 +37,7 @@ export const widgetComponents = {
   AgentWidget,
   ProductListWidget,
   AgentGroupWidget,
+  MovieRecommendWidget,
 };
 
 // ============ 组件元信息（用于编辑器面板） ============
@@ -91,6 +94,7 @@ const widgetMetaMap = {
   AgentWidget: AgentWidgetMeta,
   ProductListWidget: ProductListWidgetMeta,
   AgentGroupWidget: AgentGroupWidgetMeta,
+  MovieRecommendWidget: MovieRecommendWidgetMeta,
 };
 
 export const widgetMetas = Object.values(widgetMetaMap).map((meta) => ({

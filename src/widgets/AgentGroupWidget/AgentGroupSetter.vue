@@ -5,6 +5,7 @@
         v-for="(item, index) in modelValue"
         :key="index"
         class="flex gap-2 p-2 bg-gray-100 rounded-lg mb-2"
+        :class="{ 'opacity-50': item.visible === false }"
       >
         <div class="w-12 h-12 shrink-0">
           <img
@@ -21,12 +22,23 @@
           </div>
         </div>
         <div class="flex-1 flex flex-col gap-1">
-          <el-input
-            v-model="item.name"
-            placeholder="智能体名称"
-            @change="handleChange"
-            size="small"
-          />
+          <div class="flex items-center gap-2">
+            <el-input
+              v-model="item.name"
+              placeholder="智能体名称"
+              @change="handleChange"
+              size="small"
+              class="flex-1"
+            />
+            <el-switch
+              v-model="item.visible"
+              @change="handleChange"
+              size="small"
+              inline-prompt
+              active-text="显"
+              inactive-text="隐"
+            />
+          </div>
           <el-input
             v-model="item.avatar"
             placeholder="头像地址(可选)"
@@ -84,7 +96,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { ElInput, ElInputNumber } from "element-plus";
+import { ElInput, ElInputNumber, ElSwitch } from "element-plus";
 
 const props = defineProps({
   modelValue: {
@@ -112,7 +124,7 @@ function handleChange() {
 function add() {
   const newList = [
     ...props.modelValue,
-    { name: "新智能体", avatar: "", chatCount: 0, link: "" },
+    { name: "新智能体", avatar: "", chatCount: 0, link: "", visible: true },
   ];
   emit("update:modelValue", newList);
 }

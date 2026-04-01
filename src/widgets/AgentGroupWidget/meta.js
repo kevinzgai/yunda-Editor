@@ -6,10 +6,12 @@ export default {
   description: "智能体列表展示，支持横向滚动",
 
   defaultProps: {
+    title: "智能体推荐",
+    showTitle: true,
     agents: [
-      { name: "智能体1", avatar: "", chatCount: 10, link: "" },
-      { name: "智能体2", avatar: "", chatCount: 20, link: "" },
-      { name: "智能体3", avatar: "", chatCount: 30, link: "" },
+      { name: "智能体1", avatar: "", chatCount: 10, link: "", visible: true },
+      { name: "智能体2", avatar: "", chatCount: 20, link: "", visible: true },
+      { name: "智能体3", avatar: "", chatCount: 30, link: "", visible: true },
     ],
     styles: {
       backgroundColor: "#f5f5f5",
@@ -22,6 +24,17 @@ export default {
   },
 
   propConfig: [
+    {
+      name: "title",
+      label: "标题",
+      type: "text",
+      placeholder: "请输入标题",
+    },
+    {
+      name: "showTitle",
+      label: "显示标题",
+      type: "switch",
+    },
     {
       name: "agents",
       label: "智能体列表",

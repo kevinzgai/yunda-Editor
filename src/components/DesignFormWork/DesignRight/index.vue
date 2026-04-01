@@ -63,6 +63,11 @@
                 v-bind="config.options || {}"
                 @update:model-value="(value) => handlePropValueChange(config.name, value)"
               />
+              <MovieTagListSetter
+                v-else-if="config.type === 'movie-tag-list'"
+                :model-value="selectedWidget.props[config.name] || []"
+                @update:model-value="(value) => handlePropValueChange(config.name, value)"
+              />
               <el-input-number
                 v-else-if="config.type === 'number'"
                 :model-value="selectedWidget.props[config.name]"
@@ -147,6 +152,7 @@ import ImageListSetter from "../../../widgets/ImageListSetter.vue";
 import GridNavListSetter from "../../../widgets/GridNavWidget/GridNavListSetter.vue";
 import ProductListSetter from "../../../widgets/ProductListWidget/ProductListSetter.vue";
 import AgentGroupSetter from "../../../widgets/AgentGroupWidget/AgentGroupSetter.vue";
+import MovieTagListSetter from "../../../widgets/MovieRecommendWidget/MovieTagListSetter.vue";
 import {
   ElInput,
   ElInputNumber,

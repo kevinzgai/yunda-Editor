@@ -5,6 +5,7 @@
         v-for="(item, index) in modelValue"
         :key="index"
         class="flex gap-2 p-2 bg-gray-100 rounded-lg mb-2"
+        :class="{ 'opacity-50': item.visible === false }"
       >
         <div class="w-15 h-15 shrink-0">
           <img
@@ -21,30 +22,47 @@
           </div>
         </div>
         <div class="flex-1 flex flex-col gap-1">
-          <el-input
-            v-model="item.title"
-            placeholder="商品标题"
-            @change="handleChange"
-            size="small"
-          />
+          <div class="flex items-center gap-2">
+            <el-input
+              v-model="item.title"
+              placeholder="商品标题"
+              @change="handleChange"
+              size="small"
+              class="flex-1"
+            />
+            <el-switch
+              v-model="item.visible"
+              @change="handleChange"
+              size="small"
+              inline-prompt
+              active-text="显"
+              inactive-text="隐"
+            />
+          </div>
           <el-input
             v-model="item.description"
             placeholder="商品描述"
             @change="handleChange"
             size="small"
           />
-          <el-input
-            v-model="item.price"
-            placeholder="价格"
-            @change="handleChange"
-            size="small"
-          />
-          <el-input
-            v-model="item.sales"
-            placeholder="销量 (可选)"
-            @change="handleChange"
-            size="small"
-          />
+          <div class="flex gap-1">
+            <el-input
+              v-model="item.price"
+              placeholder="价格"
+              @change="handleChange"
+              size="small"
+            >
+              <template #prepend>¥</template>
+            </el-input>
+            <el-input-number
+              v-model="item.sales"
+              placeholder="销量"
+              @change="handleChange"
+              size="small"
+              :min="0"
+              class="w-24"
+            />
+          </div>
           <el-input
             v-model="item.image"
             placeholder="图片地址"
@@ -94,7 +112,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { ElInput } from "element-plus";
+import { ElInput, ElInputNumber, ElSwitch } from "element-plus";
 
 const props = defineProps({
   modelValue: {
@@ -122,7 +140,7 @@ function handleChange() {
 function add() {
   const newList = [
     ...props.modelValue,
-    { title: "新商品", description: "", price: "0", sales: 0, image: "", link: "" },
+    { title: "新商品", description: "商品描述", price: "0", sales: 0, image: "", link: "", visible: true },
   ];
   emit("update:modelValue", newList);
 }
