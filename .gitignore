@@ -3,6 +3,11 @@ node_modules/
 
 # Build output
 dist/
+.pnpm-store/
+baseDemo/node_modules/
+baseDemo/.pnpm-store/
+baseDemo/dist/
+baseDemo/unpackage/
 
 # IDE
 .idea/

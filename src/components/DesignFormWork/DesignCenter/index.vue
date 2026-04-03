@@ -3,6 +3,7 @@
     <!-- 工具栏 -->
     <div class="flex justify-center gap-3 bg-white border-b border-gray-200 px-4 py-2">
       <button class="px-4 py-1.5 text-sm bg-primary text-white rounded hover:bg-primary/90 transition-colors" @click="handleExport">导出</button>
+      <button class="px-4 py-1.5 text-sm bg-indigo-100 text-indigo-600 rounded hover:bg-indigo-200 transition-colors" @click="handlePreview">预览</button>
       <button class="px-4 py-1.5 text-sm bg-gray-100 text-gray-600 rounded hover:bg-gray-200 transition-colors" @click="handleClear">清空</button>
     </div>
 
@@ -68,6 +69,13 @@
       :data="exportData"
       @close="showExportModal = false"
     />
+
+    <PreviewModal
+      :visible="showPreviewModal"
+      :widget-list="widgetList"
+      :page-config="pageConfig"
+      @close="showPreviewModal = false"
+    />
   </div>
 </template>
 
@@ -76,9 +84,11 @@ import { ref, computed } from "vue";
 import { useEditorStore } from "../../../store/editor";
 import { widgetComponents } from "../../../registry";
 import ExportModal from "../../ExportModal/index.vue";
+import PreviewModal from "../../PreviewModal/index.vue";
 
 const editorStore = useEditorStore();
 const showExportModal = ref(false);
+const showPreviewModal = ref(false);
 
 const widgetList = computed(() => editorStore.widgetList);
 const selectedWidget = computed(() => editorStore.selectedWidget);
@@ -135,6 +145,10 @@ function handleMoveDown(id) {
 
 function handleExport() {
   showExportModal.value = true;
+}
+
+function handlePreview() {
+  showPreviewModal.value = true;
 }
 
 function handleClear() {

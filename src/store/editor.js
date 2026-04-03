@@ -100,8 +100,9 @@ export const useEditorStore = defineStore("editor", () => {
   // 导出数据
   function exportData() {
     return {
-      widgetList: widgetList.value,
       version: "1.0.0",
+      pageConfig: pageConfig.value,
+      widgetList: widgetList.value,
     };
   }
 

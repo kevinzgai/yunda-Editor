@@ -21,6 +21,7 @@ import HotspotWidget from "./widgets/HotspotWidget/index.vue";
 import LightCardWidget from "./widgets/LightCardWidget/index.vue";
 import LightCardListWidget from "./widgets/LightCardListWidget/index.vue";
 import ExhibitionWidget from "./widgets/ExhibitionWidget/index.vue";
+import VideoWidget from "./widgets/VideoWidget/index.vue";
 
 import TextWidgetMeta from "./widgets/TextWidget/meta";
 import ImageWidgetMeta from "./widgets/ImageWidget/meta";
@@ -38,6 +39,7 @@ import HotspotWidgetMeta from "./widgets/HotspotWidget/meta";
 import LightCardWidgetMeta from "./widgets/LightCardWidget/meta";
 import LightCardListWidgetMeta from "./widgets/LightCardListWidget/meta";
 import ExhibitionWidgetMeta from "./widgets/ExhibitionWidget/meta";
+import VideoWidgetMeta from "./widgets/VideoWidget/meta";
 
 // ============ 组件映射（用于渲染） ============
 export const widgetComponents = {
@@ -59,6 +61,7 @@ export const widgetComponents = {
   LightCardWidget,
   LightCardListWidget,
   ExhibitionWidget,
+  VideoWidget,
 };
 
 // ============ 组件元信息（用于编辑器面板） ============
@@ -123,6 +126,7 @@ const widgetMetaMap = {
   LightCardWidget: LightCardWidgetMeta,
   LightCardListWidget: LightCardListWidgetMeta,
   ExhibitionWidget: ExhibitionWidgetMeta,
+  VideoWidget: VideoWidgetMeta,
 };
 
 export const widgetMetas = Object.values(widgetMetaMap).map((meta) => ({
